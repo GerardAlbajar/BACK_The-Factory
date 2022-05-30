@@ -1,0 +1,24 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isdi-coders-2022/Gerard-Albajar_Back-Final-Project-202204-BCN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isdi-coders-2022/Gerard-Albajar_Back-Final-Project-202204-BCN/issues"
+  },
+  "homepage": "https://github.com/isdi-coders-2022/Gerard-Albajar_Back-Final-Project-202204-BCN#readme",
+  "devDependencies": {
+    "husky": "^7.0.0"
+  }
+}
