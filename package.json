@@ -19,6 +19,14 @@
   },
   "homepage": "https://github.com/isdi-coders-2022/Gerard-Albajar_Back-Final-Project-202204-BCN#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.0"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^8.5.0"
   }
 }
