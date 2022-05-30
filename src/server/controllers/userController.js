@@ -37,7 +37,7 @@ const loginUser = async (req, res, next) => {
 };
 
 const registerUser = async (req, res, next) => {
-  const { name, username, password } = req.body;
+  const { name, mail, username, password } = req.body;
   try {
     const user = await User.findOne({ username });
     if (!user) {
@@ -45,6 +45,7 @@ const registerUser = async (req, res, next) => {
 
       const newUser = {
         name,
+        mail,
         username,
         password: encryptedPassword,
       };

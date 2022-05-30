@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../../database/models/User");
 
-const { loginUser } = require("./userController");
+const { loginUser, registerUser } = require("./userController");
 
 const token = "030d715845518298a37ac8fa80f966eb7349d5e2";
 jest.mock("../../database/models/User", () => ({
@@ -61,6 +61,21 @@ describe("Given the loginUser controller", () => {
       };
 
       await loginUser(req, res, next);
+
+      expect(next).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it's invoked with a request object and the username or password are wrong", () => {
+    test("Then it should call the next method function", async () => {
+      User.findOne = jest.fn().mockRejectedValueOnce(false);
+
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      await registerUser(req, res, next);
 
       expect(next).toHaveBeenCalled();
     });
