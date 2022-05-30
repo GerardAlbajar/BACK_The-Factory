@@ -63,3 +63,22 @@ describe("Given a POST '/login' endpoint", () => {
     });
   });
 });
+
+describe("Given a POST '/register' endpoint", () => {
+  const newUserRequestReceived = {
+    name: "hello",
+    mail: "hello",
+    username: "hello",
+    password: "hello",
+  };
+  describe("When it receives a request with an existing user", () => {
+    test("Then it should call the response method status code 409", async () => {
+      await User.create(newUserRequestReceived);
+
+      await request(app)
+        .post("/user/register")
+        .send(newUserRequestReceived)
+        .expect(409);
+    });
+  });
+});
