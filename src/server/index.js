@@ -5,6 +5,7 @@ const cors = require("cors");
 const { notFoundError, generalError } = require("./middlewares/errors");
 const usersRouters = require("./routers/userRouters");
 const astroPartRouter = require("./routers/astropartRouters");
+const astroRouter = require("./routers/astroRouter");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(helmet());
 
 app.use("/user", usersRouters);
 app.use("/astroparts", astroPartRouter);
+app.use("/astros", astroRouter);
 
 app.use(notFoundError);
 app.use(generalError);
