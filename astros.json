@@ -1,0 +1,58 @@
+[
+  {
+    "id": "#612736SJDGHA",
+    "name": "REACT PERFECT ASTRO",
+    "type": "Perfect Astro",
+    "flighthistory": "false",
+    "stickers": "1",
+    "framework": "React",
+    "assembled": "false",
+    "parts": {
+      "rocket": "#812736SJDGHC",
+      "astro": "#812736SJDGHA",
+      "naut": "#812736SJDGHB"
+    }
+  },
+  {
+    "id": "#612736SJDGHB",
+    "name": "VUE PERFECT ASTRO",
+    "type": "Perfect Astro",
+    "flighthistory": "false",
+    "stickers": "1",
+    "framework": "Vue",
+    "assembled": "false",
+    "parts": {
+      "rocket": "#912736SJDGHC",
+      "astro": "#912736SJDGHA",
+      "naut": "#912736SJDGHB"
+    }
+  },
+  {
+    "id": "#612736SJDGHC",
+    "name": "ANGULAR PERFECT ASTRO",
+    "type": "Perfect Astro",
+    "flighthistory": "false",
+    "stickers": "1",
+    "framework": "Angular",
+    "assembled": "false",
+    "parts": {
+      "rocket": "#112736SJDGHC",
+      "astro": "#112736SJDGHA",
+      "naut": "#112736SJDGHB"
+    }
+  },
+  {
+    "id": "#612736SJDGHD",
+    "name": "JQUERY PERFECT ASTRO",
+    "type": "Perfect Astro",
+    "flighthistory": "false",
+    "stickers": "1",
+    "framework": "JQuery",
+    "assembled": "false",
+    "parts": {
+      "rocket": "#212736SJDGHC",
+      "astro": "#212736SJDGHA",
+      "naut": "#212736SJDGHB"
+    }
+  }
+]
