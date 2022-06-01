@@ -19,5 +19,11 @@ describe("Given a getAstroParts function", () => {
 
       expect(res.status).toHaveBeenCalledWith(expectedStatus);
     });
+
+    test("Then it should call the response json method with the list of AstroParts", () => {
+      getAstroParts(null, res);
+
+      expect(res.json).toHaveBeenCalledWith(mockAstroParts);
+    });
   });
 });
