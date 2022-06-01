@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "e96803fe-f6db-4f0b-af88-ccdcda2fd0b3",
+		"name": "Astro Factory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20626909"
+	},
+	"item": [
+		{
+			"name": "https://gerard-albajar-back-final-project-202204.onrender.com/user/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"hola\",\n    \"password\": \"hola\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gerard-albajar-back-final-project-202204.onrender.com/user/login",
+					"protocol": "https",
+					"host": [
+						"gerard-albajar-back-final-project-202204",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://gerard-albajar-back-final-project-202204.onrender.com/user/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://gerard-albajar-back-final-project-202204.onrender.com/user/register",
+					"protocol": "https",
+					"host": [
+						"gerard-albajar-back-final-project-202204",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://gerard-albajar-back-final-project-202204.onrender.com/astroparts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gerard-albajar-back-final-project-202204.onrender.com/astroparts",
+					"protocol": "https",
+					"host": [
+						"gerard-albajar-back-final-project-202204",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"astroparts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://gerard-albajar-back-final-project-202204.onrender.com/astros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gerard-albajar-back-final-project-202204.onrender.com/astros",
+					"protocol": "https",
+					"host": [
+						"gerard-albajar-back-final-project-202204",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"astros"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "origin",
+			"value": "https://gerard-albajar-back-final-project-202204.onrender.com/user/login",
+			"type": "string"
+		}
+	]
+}

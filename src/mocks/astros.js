@@ -41,20 +41,6 @@ const mockAstros = [
       naut: "62974453ec4b32f200362335",
     },
   },
-  {
-    id: "#612736SJDGHD",
-    name: "JQUERY PERFECT ASTRO",
-    type: "Perfect Astro",
-    flighthistory: "false",
-    stickers: "1",
-    framework: "JQuery",
-    assembled: "false",
-    parts: {
-      rocket: "62974453ec4b32f200362339",
-      astro: "62974453ec4b32f200362337",
-      naut: "62974453ec4b32f200362338",
-    },
-  },
 ];
 
 module.exports = {
