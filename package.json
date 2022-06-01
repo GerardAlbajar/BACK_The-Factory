@@ -53,7 +53,9 @@
       "src/**/*.js",
       "!src/index.js",
       "!src/database/index.js",
-      "!src/server/initializeServer.js"
+      "!src/server/initializeServer.js",
+      "!src/mocks/astroParts.js",
+      "!src/mocks/astros.js"
     ]
   }
 }
