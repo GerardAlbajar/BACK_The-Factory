@@ -6,6 +6,7 @@ const { notFoundError, generalError } = require("./middlewares/errors");
 const usersRouters = require("./routers/userRouters");
 const astroPartRouter = require("./routers/astropartRouters");
 const astroRouter = require("./routers/astroRouter");
+const { auth } = require("./middlewares/auth");
 
 const app = express();
 
@@ -15,8 +16,8 @@ app.use(express.json());
 app.use(helmet());
 
 app.use("/user", usersRouters);
-app.use("/astroparts", astroPartRouter);
-app.use("/astros", astroRouter);
+app.use("/astroparts", auth, astroPartRouter);
+app.use("/astros", auth, astroRouter);
 
 app.use(notFoundError);
 app.use(generalError);
