@@ -7,7 +7,7 @@ jest.mock("../../database/models/AstroPart", () => ({
 }));
 
 describe("Given a getAstroParts function", () => {
-  describe("When invoked when a response and a list of AstroParts", () => {
+  describe("When it's invoked", () => {
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
