@@ -31,4 +31,20 @@ describe("Given the auth function", () => {
       expect(req).toHaveProperty("userId", mockId);
     });
   });
+
+  describe("When it receives a request with an invalid authorization (no Bearer) and next function", () => {
+    test("Then it should call next with an error 'Invalid token'", () => {
+      const req = {
+        headers: {
+          authorization: "incorrectToken",
+        },
+      };
+      const customErrorMessage = new Error("Invalid Token");
+      const next = jest.fn();
+
+      auth(req, null, next);
+
+      expect(next).toHaveBeenCalledWith(customErrorMessage);
+    });
+  });
 });
