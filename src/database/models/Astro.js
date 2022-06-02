@@ -31,20 +31,32 @@ const AstroSchema = new Schema({
     required: true,
   },
   parts: {
-    rocket: {
-      type: Schema.Types.ObjectId,
-      ref: "AstroPart",
-      required: true,
-    },
     astro: {
-      type: Schema.Types.ObjectId,
-      ref: "AstroPart",
-      required: true,
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: "AstroPart",
+        required: true,
+      },
+
+      image: String,
     },
     naut: {
-      type: Schema.Types.ObjectId,
-      ref: "AstroPart",
-      required: true,
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: "AstroPart",
+        required: true,
+      },
+
+      image: String,
+    },
+    rocket: {
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: "AstroPart",
+        required: true,
+      },
+
+      image: String,
     },
   },
   owner: {
