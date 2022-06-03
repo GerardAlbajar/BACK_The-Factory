@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const AstroSchema = new Schema({
-  id: {
+  idRender: {
     type: String,
     required: true,
     unique: true,
