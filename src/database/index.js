@@ -9,9 +9,6 @@ const connectDB = (connectionString) =>
       virtuals: true,
       transform: (doc, ret) => {
         const newReturnedJSON = { ...ret };
-
-        // eslint-disable-next-line no-underscore-dangle
-        delete newReturnedJSON._id;
         // eslint-disable-next-line no-underscore-dangle
         delete newReturnedJSON.__v;
 
