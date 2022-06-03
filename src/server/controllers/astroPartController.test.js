@@ -30,7 +30,7 @@ describe("Given a getAstroParts function", () => {
 });
 
 describe("Given a deleteAstroPart function", () => {
-  describe("When it's invoked with a response and a serie with id 1", () => {
+  describe("When it's invoked with a response and an Astro Part with id 1", () => {
     const req = {
       params: {
         idAstroPart: 1,
