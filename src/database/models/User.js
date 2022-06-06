@@ -27,7 +27,7 @@ const UserSchema = new Schema({
           ref: "Astro",
         },
       ],
-      default: ["629a2ed8ec4b32f200362464"],
+      default: [],
     },
     part: {
       type: [
@@ -36,7 +36,7 @@ const UserSchema = new Schema({
           ref: "AstroPart",
         },
       ],
-      default: ["629a2e8fec4b32f200362452"],
+      default: [],
     },
   },
 });

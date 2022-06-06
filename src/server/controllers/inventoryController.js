@@ -27,4 +27,33 @@ const getInventory = async (req, res, next) => {
   }
 };
 
-module.exports = { getInventory };
+const deleteInventoryItem = async (req, res) => {
+  debug(chalk.bold.redBright("Request to delete an Astro Part received"));
+
+  const { idUser, inventoryKey, idItemToRemove } = req.params;
+
+  const { inventory } = await User.findById(idUser);
+
+  const updatedItems = inventory[inventoryKey].filter(
+    // eslint-disable-next-line no-underscore-dangle
+    (astroItem) => astroItem._id.toString() !== idItemToRemove
+  );
+
+  const updatingProperty = {
+    inventory: {
+      ...inventory,
+      [inventoryKey]: updatedItems,
+    },
+  };
+
+  const updatedUser = await User.findByIdAndUpdate(idUser, updatingProperty, {
+    new: true,
+  });
+
+  res.status(200).json(updatedUser);
+};
+
+module.exports = {
+  getInventory,
+  deleteInventoryItem,
+};
