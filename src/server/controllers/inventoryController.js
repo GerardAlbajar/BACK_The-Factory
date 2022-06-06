@@ -28,11 +28,21 @@ const getInventory = async (req, res, next) => {
 };
 
 const deleteInventoryItem = async (req, res) => {
-  debug(chalk.bold.redBright("Request to delete an Astro Part received"));
+  debug(chalk.bold.redBright("Request to delete an Astro Item received"));
 
   const { idUser, inventoryKey, idItemToRemove } = req.params;
 
-  const { inventory } = await User.findById(idUser);
+  const { inventory } = await User.findById(idUser).populate({
+    path: "inventory",
+    populate: [
+      {
+        path: "perfect",
+      },
+      {
+        path: "part",
+      },
+    ],
+  });
 
   const updatedItems = inventory[inventoryKey].filter(
     // eslint-disable-next-line no-underscore-dangle
@@ -48,12 +58,58 @@ const deleteInventoryItem = async (req, res) => {
 
   const updatedUser = await User.findByIdAndUpdate(idUser, updatingProperty, {
     new: true,
+  }).populate({
+    path: "inventory",
+    populate: [
+      {
+        path: "perfect",
+      },
+      {
+        path: "part",
+      },
+    ],
   });
 
-  res.status(200).json(updatedUser);
+  res.status(200).json(updatedUser.inventory);
+};
+
+const addInventoryItem = async (req, res) => {
+  debug(chalk.bold.redBright("Request to add an Astro Item received"));
+
+  const { idUser, inventoryKey, idItemToAdd } = req.params;
+
+  const { inventory } = await User.findById(idUser);
+
+  const updatedItems = inventory[inventoryKey];
+
+  updatedItems.push(idItemToAdd);
+
+  const updatingProperty = {
+    inventory: {
+      ...inventory,
+      [inventoryKey]: updatedItems,
+    },
+  };
+
+  const updatedUser = await User.findByIdAndUpdate(idUser, updatingProperty, {
+    new: true,
+  }).populate({
+    path: "inventory",
+    populate: [
+      {
+        path: "perfect",
+      },
+      {
+        path: "part",
+      },
+    ],
+  });
+
+  res.status(200).json(updatedUser.inventory);
 };
 
 module.exports = {
   getInventory,
   deleteInventoryItem,
+  addInventoryItem,
 };
