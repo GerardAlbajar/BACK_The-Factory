@@ -1,5 +1,9 @@
 const { mockAstroParts, mockAstroPart } = require("../../mocks/astroParts");
-const { getAstroParts, deleteAstroPart } = require("./astroPartController");
+const {
+  getAstroParts,
+  deleteAstroPart,
+  // getAstroPart,
+} = require("./astroPartController");
 
 jest.mock("../../database/models/AstroPart", () => ({
   ...jest.requireActual("../../database/models/AstroPart"),
@@ -60,3 +64,32 @@ describe("Given a deleteAstroPart function", () => {
     });
   });
 });
+
+// describe("Given a deleteAstroPart function", () => {
+//   describe("When it's invoked with a response and an Astro Part with id 1", () => {
+//     const req = {
+//       params: {
+//         idAstroPart: 1,
+//       },
+//     };
+
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     };
+
+//     test("Then it should call the response status method with 200", async () => {
+//       const expectedStatus = 200;
+
+//       await getAstroPart(req, res);
+
+//       expect(res.status).toHaveBeenCalledWith(expectedStatus);
+//     });
+
+//     test("Then it should call the response json method with 'Your Astro Part has been deleted (Astro Part number 1)' message", () => {
+//       getAstroPart(req, res);
+
+//       expect(res.json).toHaveBeenCalledWith(mockAstroPart);
+//     });
+//   });
+// });
