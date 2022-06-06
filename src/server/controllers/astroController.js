@@ -10,6 +10,15 @@ const getAstros = async (req, res) => {
   res.status(200).json(astro);
 };
 
+const getAstro = async (req, res) => {
+  debug(chalk.bold.cyanBright("Astro request received"));
+
+  const { idAstro } = req.params;
+
+  const astroPart = await Astro.findById(idAstro);
+  res.status(200).json(astroPart);
+};
+
 const deleteAstro = async (req, res) => {
   debug(chalk.bold.redBright("Request to delete an Astro received"));
 
@@ -23,5 +32,6 @@ const deleteAstro = async (req, res) => {
 
 module.exports = {
   getAstros,
+  getAstro,
   deleteAstro,
 };
