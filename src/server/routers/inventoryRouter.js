@@ -4,6 +4,7 @@ const {
   deleteInventoryItem,
   addInventoryItem,
   createInventoryItem,
+  editMutantAstro,
 } = require("../controllers/inventoryController");
 
 const inventoryRouter = express.Router();
@@ -15,5 +16,6 @@ inventoryRouter.delete(
 );
 inventoryRouter.post("/:idUser/:inventoryKey/:idItemToAdd", addInventoryItem);
 inventoryRouter.post("/:idUser", createInventoryItem);
+inventoryRouter.put("/:idUser/:idItemToEdit", editMutantAstro);
 
 module.exports = inventoryRouter;
