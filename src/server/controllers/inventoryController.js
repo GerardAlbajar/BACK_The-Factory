@@ -1,6 +1,7 @@
 require("dotenv").config();
 const debug = require("debug")("astrofactory:controllers:inventoryControllers");
 const chalk = require("chalk");
+const Astro = require("../../database/models/Astro");
 const User = require("../../database/models/User");
 
 const getInventory = async (req, res, next) => {
@@ -108,8 +109,47 @@ const addInventoryItem = async (req, res) => {
   res.status(200).json(updatedUser.inventory);
 };
 
+const createInventoryItem = async (req, res) => {
+  debug(chalk.bold.redBright("Request to create Mutant Astro received"));
+
+  const { idUser } = req.params;
+  const astroParts = req.body;
+
+  const { inventory } = await User.findById(idUser);
+
+  const newMutantAstro = await Astro.create(astroParts);
+
+  const updatedItems = inventory.perfect;
+
+  updatedItems.push(newMutantAstro);
+
+  const updatingProperty = {
+    inventory: {
+      ...inventory,
+      perfect: updatedItems,
+    },
+  };
+
+  const updatedUser = await User.findByIdAndUpdate(idUser, updatingProperty, {
+    new: true,
+  }).populate({
+    path: "inventory",
+    populate: [
+      {
+        path: "perfect",
+      },
+      {
+        path: "part",
+      },
+    ],
+  });
+
+  res.status(200).json(updatedUser.inventory);
+};
+
 module.exports = {
   getInventory,
   deleteInventoryItem,
   addInventoryItem,
+  createInventoryItem,
 };
