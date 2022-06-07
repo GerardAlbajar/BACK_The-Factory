@@ -147,9 +147,51 @@ const createInventoryItem = async (req, res) => {
   res.status(200).json(updatedUser.inventory);
 };
 
+const editMutantAstro = async (req, res) => {
+  debug(chalk.bold.redBright("Request to edit Mutant Astro received"));
+
+  const { idUser, idItemToEdit } = req.params;
+  const astroParts = req.body;
+
+  const { inventory } = await User.findById(idUser);
+
+  const updatedMutantAstro = await Astro.findByIdAndUpdate(
+    idItemToEdit,
+    astroParts
+  );
+
+  const updatedItems = inventory.perfect;
+
+  updatedItems.push(updatedMutantAstro);
+
+  const updatingProperty = {
+    inventory: {
+      ...inventory,
+      perfect: updatedItems,
+    },
+  };
+
+  const updatedUser = await User.findByIdAndUpdate(idUser, updatingProperty, {
+    new: true,
+  }).populate({
+    path: "inventory",
+    populate: [
+      {
+        path: "perfect",
+      },
+      {
+        path: "part",
+      },
+    ],
+  });
+
+  res.status(200).json(updatedUser.inventory);
+};
+
 module.exports = {
   getInventory,
   deleteInventoryItem,
   addInventoryItem,
   createInventoryItem,
+  editMutantAstro,
 };
