@@ -155,14 +155,9 @@ const editMutantAstro = async (req, res) => {
 
   const { inventory } = await User.findById(idUser);
 
-  const updatedMutantAstro = await Astro.findByIdAndUpdate(
-    idItemToEdit,
-    astroParts
-  );
+  await Astro.findByIdAndUpdate(idItemToEdit, astroParts);
 
   const updatedItems = inventory.perfect;
-
-  updatedItems.push(updatedMutantAstro);
 
   const updatingProperty = {
     inventory: {
