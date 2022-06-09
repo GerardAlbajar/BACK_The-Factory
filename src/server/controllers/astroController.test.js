@@ -1,10 +1,11 @@
 const { mockAstros, mockAstro } = require("../../mocks/astros");
-const { getAstros, deleteAstro } = require("./astroController");
+const { getAstros, deleteAstro, getAstro } = require("./astroController");
 
 jest.mock("../../database/models/Astro", () => ({
   ...jest.requireActual("../../database/models/Astro"),
   find: jest.fn().mockResolvedValue(mockAstros),
   findByIdAndDelete: jest.fn().mockResolvedValue(mockAstro),
+  findById: jest.fn().mockResolvedValue(mockAstro),
 }));
 
 describe("Given a getAstros function", () => {
@@ -57,6 +58,32 @@ describe("Given a deleteAstro function", () => {
       };
 
       expect(res.json).toHaveBeenCalledWith(expectedMessage);
+    });
+  });
+});
+
+describe("Given a getAstro function", () => {
+  const req = {
+    params: { idAstro: "612736SJDGHA" },
+  };
+  describe("When it's invoked", () => {
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    test("Then it should call the response status method with 200", async () => {
+      const expectedStatus = 200;
+
+      await getAstro(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatus);
+    });
+
+    test("Then it should call the response json method with the list of AstroParts", () => {
+      getAstro(req, res);
+
+      expect(res.json).toHaveBeenCalledWith(mockAstro);
     });
   });
 });

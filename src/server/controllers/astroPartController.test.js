@@ -2,13 +2,14 @@ const { mockAstroParts, mockAstroPart } = require("../../mocks/astroParts");
 const {
   getAstroParts,
   deleteAstroPart,
-  // getAstroPart,
+  getAstroPart,
 } = require("./astroPartController");
 
 jest.mock("../../database/models/AstroPart", () => ({
   ...jest.requireActual("../../database/models/AstroPart"),
   find: jest.fn().mockResolvedValue(mockAstroParts),
   findByIdAndDelete: jest.fn().mockResolvedValue(mockAstroPart),
+  findById: jest.fn().mockResolvedValue(mockAstroPart),
 }));
 
 describe("Given a getAstroParts function", () => {
@@ -65,31 +66,28 @@ describe("Given a deleteAstroPart function", () => {
   });
 });
 
-// describe("Given a deleteAstroPart function", () => {
-//   describe("When it's invoked with a response and an Astro Part with id 1", () => {
-//     const req = {
-//       params: {
-//         idAstroPart: 1,
-//       },
-//     };
+describe("Given a getAstro function", () => {
+  const req = {
+    params: { idAstroPart: "812736SJDGHA" },
+  };
+  describe("When it's invoked", () => {
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
 
-//     const res = {
-//       status: jest.fn().mockReturnThis(),
-//       json: jest.fn(),
-//     };
+    test("Then it should call the response status method with 200", async () => {
+      const expectedStatus = 200;
 
-//     test("Then it should call the response status method with 200", async () => {
-//       const expectedStatus = 200;
+      await getAstroPart(req, res);
 
-//       await getAstroPart(req, res);
+      expect(res.status).toHaveBeenCalledWith(expectedStatus);
+    });
 
-//       expect(res.status).toHaveBeenCalledWith(expectedStatus);
-//     });
+    test("Then it should call the response json method with the list of AstroParts", () => {
+      getAstroPart(req, res);
 
-//     test("Then it should call the response json method with 'Your Astro Part has been deleted (Astro Part number 1)' message", () => {
-//       getAstroPart(req, res);
-
-//       expect(res.json).toHaveBeenCalledWith(mockAstroPart);
-//     });
-//   });
-// });
+      expect(res.json).toHaveBeenCalledWith(mockAstroPart);
+    });
+  });
+});

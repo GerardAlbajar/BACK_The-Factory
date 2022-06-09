@@ -23,6 +23,7 @@ beforeEach(async () => {
 
 afterEach(async () => {
   await Astro.deleteMany({});
+  await AstroPart.deleteMany({});
 });
 
 afterAll(async () => {
@@ -32,7 +33,7 @@ afterAll(async () => {
 
 describe("Given a GET '/inventory' endpoint", () => {
   describe("When it receives a request", () => {
-    test.only("Then it should specify json as the content type in the http header", async () => {
+    test("Then it should specify json as the content type in the http header", async () => {
       const response = await request(app).get("/inventory");
 
       expect(response.headers["content-type"]).toEqual(
