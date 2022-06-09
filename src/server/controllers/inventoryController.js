@@ -144,7 +144,7 @@ const createInventoryItem = async (req, res) => {
     ],
   });
 
-  res.status(200).json(updatedUser.inventory);
+  res.status(201).json(updatedUser.inventory);
 };
 
 const editMutantAstro = async (req, res) => {
