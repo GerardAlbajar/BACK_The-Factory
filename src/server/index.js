@@ -8,6 +8,7 @@ const astroPartRouter = require("./routers/astropartRouters");
 const astroRouter = require("./routers/astroRouter");
 const { auth } = require("./middlewares/auth");
 const inventoryRouter = require("./routers/inventoryRouter");
+const usersFunctionalitiesRouters = require("./routers/usersRouter");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use("/user", usersRouters);
 app.use("/astroparts", auth, astroPartRouter);
 app.use("/astros", auth, astroRouter);
 app.use("/inventory", auth, inventoryRouter);
+app.use("/users", usersFunctionalitiesRouters);
 
 app.use(notFoundError);
 app.use(generalError);
