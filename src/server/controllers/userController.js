@@ -70,17 +70,19 @@ const registerUser = async (req, res, next) => {
 const getUsers = async (req, res) => {
   debug(chalk.bold.cyanBright("Users request received"));
 
-  const users = await User.find().populate({
-    path: "inventory",
-    populate: [
-      {
-        path: "perfect",
-      },
-      {
-        path: "part",
-      },
-    ],
-  });
+  const users = await User.find()
+    .select("-password")
+    .populate({
+      path: "inventory",
+      populate: [
+        {
+          path: "perfect",
+        },
+        {
+          path: "part",
+        },
+      ],
+    });
 
   res.status(200).json(users);
 };
