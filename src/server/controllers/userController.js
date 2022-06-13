@@ -1,4 +1,7 @@
+require("dotenv").config();
+const debug = require("debug")("astrofactory:controllers:userController");
 const bcrypt = require("bcrypt");
+const chalk = require("chalk");
 const jsonwebtoken = require("jsonwebtoken");
 const User = require("../../database/models/User");
 
@@ -64,4 +67,22 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-module.exports = { loginUser, registerUser };
+const getUsers = async (req, res) => {
+  debug(chalk.bold.cyanBright("Users request received"));
+
+  const users = await User.find().populate({
+    path: "inventory",
+    populate: [
+      {
+        path: "perfect",
+      },
+      {
+        path: "part",
+      },
+    ],
+  });
+
+  res.status(200).json(users);
+};
+
+module.exports = { loginUser, registerUser, getUsers };
