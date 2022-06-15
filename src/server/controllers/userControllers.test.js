@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../../database/models/User");
 
-const { loginUser, registerUser } = require("./userController");
+const { loginUser, registerUser, getUsers } = require("./userController");
 
 const token = "030d715845518298a37ac8fa80f966eb7349d5e2";
 jest.mock("../../database/models/User", () => ({
@@ -78,6 +78,36 @@ describe("Given the loginUser controller", () => {
       await registerUser(req, res, next);
 
       expect(next).toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given a editMutantAstro function", () => {
+  describe("When it receives a request with an idUser, inventoryKey and idItemToAdd", () => {
+    const user = [
+      {
+        inventory: {
+          part: [],
+          perfect: [],
+        },
+        name: "demo",
+        mail: "demo@gmail.com",
+        username: "demo",
+        id: "62a998ea1521cd08dd1980a7",
+      },
+    ];
+    test("Then it should call the response json method with 200 status", async () => {
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      User.find = jest.fn().mockReturnThis();
+      User.select = jest.fn().mockReturnThis();
+      User.populate = jest.fn().mockResolvedValue(user);
+
+      await getUsers(null, res);
+
+      expect(res.json).toHaveBeenCalledWith(user);
     });
   });
 });
