@@ -87,6 +87,19 @@ describe("Given a getInventory function", () => {
 
       expect(next).toHaveBeenCalledWith(error);
     });
+
+    test("Then it should call the respose's json method with the user inventory", async () => {
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      User.findById = jest.fn().mockReturnThis();
+      User.populate = jest.fn().mockResolvedValue({ inventory });
+
+      await getInventory(req, res);
+
+      expect(res.json).toHaveBeenCalledWith(inventory);
+    });
   });
 });
 
